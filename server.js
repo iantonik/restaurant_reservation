@@ -21,12 +21,12 @@ var reservation = [
     }
 ];
 
-// var newReservation = {
-//     name: $("#name").val().trim(),
-//     phone: $("#phone").val().trim(),
-//     email: $("#email").val().trim(),
-    
-// }
+var newReservation = {
+    name: $("#name").val(),
+    phone: $("#phone").val(),
+    email: $("#email").val(),
+}
+
 //routes
 
 app.get("/", function(req, res){
