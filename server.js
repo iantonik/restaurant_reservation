@@ -21,11 +21,6 @@ var reservation = [
     }
 ];
 
-var newReservation = {
-    name: $("#name").val(),
-    phone: $("#phone").val(),
-    email: $("#email").val(),
-}
 
 //routes
 
@@ -39,6 +34,10 @@ app.get("/reservation", function(req, res){
 
 app.get("/viewtables", function(req, res){
     res.sendFile(path.join(__dirname, "viewtables.html"))
+});
+
+app.get("/api/reservations",function(req, res){
+    return res.json(reservations);
 });
 
 app.post("/api/reservations",function(req, res){
