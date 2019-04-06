@@ -36,6 +36,8 @@ app.get("/viewtables", function(req, res){
     res.sendFile(path.join(__dirname, "viewtables.html"))
 });
 
+
+
 app.get("/api/reservations",function(req, res){
     return res.json(reservation1);
 });

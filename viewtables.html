@@ -46,6 +46,9 @@
               <h4>Current Reservations</h4>
             </div>
             <div class="card-body">
+                <ul id = "tableList">
+                    
+                </ul>
               <!-- <ul id="tableList" class="list-group"><li class="list-group-item mt-4"><h2>Table #1</h2><hr><h2>ID: wef</h2><h2>Name: ef</h2><h2>Email: wef</h2><h2>Phone: wfe</h2></li><li class="list-group-item mt-4"><h2>Table #2</h2><hr><h2>ID: whereAreMyShoes</h2><h2>Name: Shoeless Joe Jackson</h2><h2>Email: shoelessjoe@noshoes.com</h2><h2>Phone: 555-1212</h2></li><li class="list-group-item mt-4"><h2>Table #3</h2><hr><h2>ID: 12</h2><h2>Name: Robert "); DROP TABLE reservations; Roberts</h2><h2>Email: </h2><h2>Phone: </h2></li><li class="list-group-item mt-4"><h2>Table #4</h2><hr><h2>ID: ErogAe</h2><h2>Name: Wei Boe</h2><h2>Email: BobisPoe@gmail.Bob</h2><h2>Phone: 719-000-2314</h2></li><li class="list-group-item mt-4"><h2>Table #5</h2><hr><h2>ID: </h2><h2>Name: Chris</h2><h2>Email: </h2><h2>Phone: </h2></li></ul> -->
             </div>
           </div>
@@ -56,6 +59,9 @@
               <h4>Waiting List</h4>
             </div>
             <div class="card-body">
+                <ul id = "waitList">
+
+                </ul>
               <!-- <ul id="waitList" class="list-group"><li class="list-group-item mt-4"><h2>Table #1</h2><hr><h2>ID: 22321</h2><h2>Name: 2</h2><h2>Email: 12</h2><h2>Phone: 1</h2></li></ul> -->
             </div>
           </div>
@@ -63,6 +69,29 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+    <script src="server.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.get("/api/reservations",function(data){
+                var reservation1= data;
+                var num;
+                if(reservation1.length>=5){
+                    num=5;
+                    for(var i=0;i<num;++i){
+                    $("#tableList").append(`<li><h2 id="tableNumber">Table ${i+1}</h2><br>
+                                <h2 id="name"></h2>${reservation1[i].name}<br>
+                                <h3 id="phoneNumber">${reservation1[i].phone}</h3><br>
+                                <h3 id="email">${reservation1[i].email}</h3><br></li>`)
+                } 
+            } else {for(var i=0;i<reservation1.length; ++i){
+                    $("#tableList").append(`<li><h2 id="tableNumber">Table ${i+1}</h2><br>
+                                <h2 id="name"></h2>${reservation1[i].name}<br>
+                                <h3 id="phoneNumber">${reservation1[i].phone}</h3><br>
+                                <h3 id="email">${reservation1[i].email}</h3><br></li>`)
+                }}
+                
+            });
+      });
+    </script>
   </body>
 </html>
