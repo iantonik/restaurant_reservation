@@ -13,7 +13,7 @@ app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 
-var reservation = [
+var reservation1 = [
     {
         name: "Jenny",
         phone: "867-5309",
@@ -37,14 +37,14 @@ app.get("/viewtables", function(req, res){
 });
 
 app.get("/api/reservations",function(req, res){
-    return res.json(reservations);
+    return res.json(reservation1);
 });
 
 app.post("/api/reservations",function(req, res){
-    var reservation= req.body;
+    var rsvp= req.body;
     
-    reservation.routeName = reservation.name.replace(/\s+/g, "").toLowerCase();
+    rsvp.routeName = rsvp.name.replace(/\s+/g, "").toLowerCase();
 
-    reservations.push(reservation);
-    res.json(reservation);
+    reservation1.push(rsvp);
+    res.json(rsvp);
 });
