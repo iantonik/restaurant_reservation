@@ -13,10 +13,20 @@ app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 
-var reservations = [
-    
+var reservation = [
+    {
+        name: "Jenny",
+        phone: "867-5309",
+        email: "tommy@tutone.org"
+    }
 ];
 
+var newReservation = {
+    name: $("#name").val().trim(),
+    phone: $("#phone").val().trim(),
+    email: $("#email").val().trim(),
+    
+}
 //routes
 
 app.get("/", function(req, res){
@@ -29,4 +39,13 @@ app.get("/reservation", function(req, res){
 
 app.get("/viewtables", function(req, res){
     res.sendFile(path.join(__dirname, "viewtables.html"))
+});
+
+app.post("/api/reservations",function(req, res){
+    var reservation= req.body;
+    
+    reservation.routeName = reservation.name.replace(/\s+/g, "").toLowerCase();
+
+    reservations.push(reservation);
+    res.json(reservation);
 });
